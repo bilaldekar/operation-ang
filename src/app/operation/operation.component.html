@@ -1,0 +1,36 @@
+<div style="margin-bottom: 5px;" >
+<a [routerLink]="['/crud' , 'add']" >
+  <p-button icon="pi pi-plus" label="Ajouter" ></p-button>
+</a>
+</div>
+
+<p-table  [value]="operations" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" >
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th>Name</th>
+      <th>Date de création</th>
+      <th>Type</th>
+      <th>Port de livraison</th>
+      <th>
+        Actions
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-oper let-columns="columns">
+    <tr>
+      <td>{{oper.name}}</td>
+      <td>{{oper.dateCreation | date:'short'}}</td>
+      <td>{{oper.typeAchat.value}}</td>
+      <td>{{oper.port_livraison}}</td>
+      <td>
+        <a [routerLink]="['/crud' , 'show',  oper.id]">
+          <p-button icon="pi pi-search" ></p-button>
+        </a>
+        <a [routerLink]="['/crud' , 'edit',  oper.id]" style="margin-left: 5px;" >
+          <p-button icon="pi pi-refresh" ></p-button>
+        </a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
